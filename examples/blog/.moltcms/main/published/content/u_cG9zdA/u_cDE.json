@@ -1,0 +1,12 @@
+{
+	"content_type": "post",
+	"data": {
+		"body": "This build runs entirely from committed JSON.",
+		"slug": "hello",
+		"title": "Hello moltcms"
+	},
+	"id": "p1",
+	"schema_version": 1,
+	"seq": 1,
+	"type": "content"
+}

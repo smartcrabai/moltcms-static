@@ -1,0 +1,43 @@
+{
+	"name": "@moltcms/static-core",
+	"version": "0.1.0",
+	"description": "Incremental route planning, dependencies, queries, and immutable generation core for moltcms static sites.",
+	"license": "Apache-2.0",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"check": "tsc -p ../../tsconfig.json --noEmit",
+		"test": "bun test src",
+		"prepublishOnly": "bun run build"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/smartcrabai/moltcms-static.git"
+	},
+	"keywords": [
+		"moltcms",
+		"static-site-generator",
+		"incremental-build"
+	],
+	"engines": {
+		"node": ">=22"
+	},
+	"dependencies": {
+		"@moltcms/client": "^0.4.0"
+	}
+}

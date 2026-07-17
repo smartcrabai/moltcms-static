@@ -1,0 +1,9 @@
+{
+	"content_type": "post",
+	"fields": [
+		{ "kind": "string", "name": "title", "required": true },
+		{ "kind": "string", "name": "slug", "required": true },
+		{ "kind": "text", "name": "body" }
+	],
+	"version": 1
+}

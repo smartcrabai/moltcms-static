@@ -1,0 +1,79 @@
+name: Release static packages
+
+on:
+  push:
+    tags:
+      - "static-v*"
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Update npm for trusted publishing
+        run: npm install --global npm@11.17.0
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Verify release versions
+        shell: bash
+        run: |
+          expected="${GITHUB_REF_NAME#static-v}"
+          for package in static-core static-json static-hono static-esbuild static-rollup static-vite static-cache-s3 static-deploy-s3 static; do
+            actual=$(jq --raw-output .version "packages/${package}/package.json")
+            if [ "${actual}" != "${expected}" ]; then
+              echo "packages/${package} version ${actual} does not match ${expected}" >&2
+              exit 1
+            fi
+          done
+
+      - name: Check, test, and build
+        run: bun run check && bun run test
+
+      - name: Add package documentation and licenses
+        run: bun run prepare:publish
+
+      - name: Pack packages
+        shell: bash
+        run: |
+          mkdir artifacts
+          for package in static-core static-json static-hono static-esbuild static-rollup static-vite static-cache-s3 static-deploy-s3 static; do
+            (cd "packages/${package}" && bun pm pack --destination "${GITHUB_WORKSPACE}/artifacts" --quiet)
+          done
+
+      - name: Verify package tarballs
+        shell: bash
+        run: |
+          for package in artifacts/*.tgz; do
+            tar --list --gzip --file "${package}" | grep --quiet '^package/dist/index.js$'
+            tar --list --gzip --file "${package}" | grep --quiet '^package/dist/index.d.ts$'
+            tar --list --gzip --file "${package}" | grep --quiet '^package/README.md$'
+            tar --list --gzip --file "${package}" | grep --quiet '^package/LICENSE$'
+          done
+
+      - name: Publish dependency packages
+        shell: bash
+        run: |
+          for package in moltcms-static-core moltcms-static-json moltcms-static-hono moltcms-static-esbuild moltcms-static-rollup moltcms-static-vite moltcms-static-cache-s3 moltcms-static-deploy-s3 moltcms-static; do
+            npm publish artifacts/${package}-*.tgz --provenance --access public
+          done

@@ -1,0 +1,29 @@
+{
+	"name": "@moltcms-sdk/client",
+	"version": "0.2.2",
+	"description": "Typed, authenticated Server-Sent Events client for moltcms incremental sync.",
+	"license": "Apache-2.0",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"bin": {
+		"moltcms-sdk-codegen": "./dist/codegen.js"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"check": "tsc -p ../../tsconfig.json --noEmit",
+		"test": "bun test src"
+	},
+	"engines": {
+		"node": ">=22"
+	}
+}

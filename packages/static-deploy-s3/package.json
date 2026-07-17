@@ -1,0 +1,43 @@
+{
+	"name": "@moltcms/static-deploy-s3",
+	"version": "0.1.0",
+	"description": "Immutable S3/R2 deployment adapter for moltcms static sites.",
+	"license": "Apache-2.0",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"prepublishOnly": "bun run build"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/smartcrabai/moltcms-static.git"
+	},
+	"keywords": [
+		"moltcms",
+		"s3",
+		"r2",
+		"deployment"
+	],
+	"engines": {
+		"node": ">=22"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.995.0",
+		"@moltcms/static-core": "^0.1.0"
+	}
+}

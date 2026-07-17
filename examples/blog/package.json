@@ -1,0 +1,17 @@
+{
+	"name": "@moltcms/example-blog",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"codegen": "bun ../../packages/static/dist/cli.js codegen --config moltcms.config.ts --output src/moltcms.generated.ts",
+		"build": "bun ../../packages/static/dist/cli.js build --config moltcms.config.ts",
+		"test": "bun test"
+	},
+	"dependencies": {
+		"@moltcms/client": "^0.4.0",
+		"@moltcms/static": "workspace:*",
+		"@moltcms/static-esbuild": "workspace:*",
+		"@moltcms/static-hono": "workspace:*",
+		"hono": "^4.11.7"
+	}
+}

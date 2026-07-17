@@ -1,0 +1,43 @@
+{
+	"name": "@moltcms/static-vite",
+	"version": "0.1.0",
+	"description": "Vite development and HMR adapter for moltcms static sites.",
+	"license": "Apache-2.0",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"prepublishOnly": "bun run build"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/smartcrabai/moltcms-static.git"
+	},
+	"keywords": [
+		"moltcms",
+		"vite",
+		"hmr",
+		"static-site-generator"
+	],
+	"engines": {
+		"node": ">=22"
+	},
+	"dependencies": {
+		"@moltcms/static-rollup": "^0.1.0",
+		"vite": "^8.0.10"
+	}
+}

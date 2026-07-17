@@ -1,0 +1,38 @@
+{
+	"name": "moltcms-static-workspace",
+	"private": true,
+	"type": "module",
+	"workspaces": [
+		"packages/static-core",
+		"packages/static-json",
+		"packages/static-hono",
+		"packages/static-esbuild",
+		"packages/static-rollup",
+		"packages/static-vite",
+		"packages/static-cache-s3",
+		"packages/static-deploy-s3",
+		"packages/static",
+		"examples/*"
+	],
+	"scripts": {
+		"build": "bun x tsc -p packages/static-core/tsconfig.build.json && bun x tsc -p packages/static-json/tsconfig.build.json && bun x tsc -p packages/static-hono/tsconfig.build.json && bun x tsc -p packages/static-esbuild/tsconfig.build.json && bun x tsc -p packages/static-rollup/tsconfig.build.json && bun x tsc -p packages/static-vite/tsconfig.build.json && bun x tsc -p packages/static-cache-s3/tsconfig.build.json && bun x tsc -p packages/static-deploy-s3/tsconfig.build.json && bun x tsc -p packages/static/tsconfig.build.json",
+		"check": "bun run build && tsc -p tsconfig.json --noEmit",
+		"test": "bun run build && bun test packages examples",
+		"fmt": "biome format .",
+		"fmt:fix": "biome format --write .",
+		"lint": "oxlint .",
+		"lint:fix": "oxlint --fix .",
+		"codegen": "bun run --filter @moltcms/static codegen",
+		"static": "bun run --filter @moltcms/static moltcms-static",
+		"prepare:publish": "bun scripts/prepare-publish.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.3",
+		"@types/bun": "latest",
+		"oxlint": "1.74.0",
+		"typescript": "^5.9.3"
+	},
+	"engines": {
+		"node": ">=22"
+	}
+}

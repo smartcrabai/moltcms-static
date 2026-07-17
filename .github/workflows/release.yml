@@ -74,6 +74,15 @@ jobs:
       - name: Publish dependency packages
         shell: bash
         run: |
+          version="${GITHUB_REF_NAME#static-v}"
           for package in moltcms-static-core moltcms-static-json moltcms-static-hono moltcms-static-esbuild moltcms-static-rollup moltcms-static-vite moltcms-static-cache-s3 moltcms-static-deploy-s3 moltcms-static; do
-            npm publish artifacts/${package}-*.tgz --provenance --access public
+            tarball="./artifacts/${package}-${version}.tgz"
+            spec=$(tar --extract --to-stdout --gzip --file "${tarball}" package/package.json | jq --raw-output '.name + "@" + .version')
+            name="${spec%@*}"
+            artifact_url="https://registry.npmjs.org/${name/\//%2F}/-/${name##*/}-${spec##*@}.tgz"
+            if curl --fail --silent --head "${artifact_url}" > /dev/null; then
+              echo "skip ${spec} (already published)"
+              continue
+            fi
+            npm publish "${tarball}" --provenance --access public
           done

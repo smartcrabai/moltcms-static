@@ -47,6 +47,7 @@ artifacts/
 
 # Agent-local
 .claude/
+.omp/
 
 # Generation temp dirs
 dist.next-*/

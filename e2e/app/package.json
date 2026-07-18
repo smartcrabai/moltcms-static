@@ -1,0 +1,10 @@
+{
+	"name": "moltcms-static-e2e-app",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"sync": "moltcms-static sync --site main",
+		"codegen": "moltcms-static codegen --site main --output src/moltcms.generated.ts",
+		"build": "moltcms-static build --site main"
+	}
+}

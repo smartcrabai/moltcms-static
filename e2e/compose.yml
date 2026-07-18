@@ -1,0 +1,21 @@
+# Public side of the moltcms-static live E2E: only the sample app, consuming
+# the published sync contract (sync URL + read-only API key). The private
+# test harness is owned by the moltcms repository and started by
+# e2e/e2e.test.ts through its generic wrapper. Both stacks share the
+# moltcms-static-e2e network created by the private side.
+name: moltcms-static-e2e-app
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    environment:
+      MOLT_SYNC_URL: ${MOLT_SYNC_URL}
+      MOLT_API_KEY: ${MOLT_API_KEY}
+      MOLT_EXPECT: ${MOLT_EXPECT}
+
+networks:
+  default:
+    external: true
+    name: moltcms-static-e2e

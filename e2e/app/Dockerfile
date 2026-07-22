@@ -10,7 +10,8 @@ COPY app/package.json ./
 # Install only the packages the app uses: the facade plus its runtime
 # dependencies, taken from the freshly packed tarballs; the canonical
 # client comes from npm just like for a real user.
-RUN bun add /tarballs/moltcms-static-[0-9]*.tgz \
+RUN bun add /tarballs/create-moltcms-static-*.tgz \
+	/tarballs/moltcms-static-[0-9]*.tgz \
 	/tarballs/moltcms-static-core-*.tgz \
 	/tarballs/moltcms-static-json-*.tgz \
 	@moltcms/client@^0.4.0

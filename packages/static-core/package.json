@@ -1,6 +1,6 @@
 {
 	"name": "@moltcms/static-core",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Incremental route planning, dependencies, queries, and immutable generation core for moltcms static sites.",
 	"license": "Apache-2.0",
 	"type": "module",

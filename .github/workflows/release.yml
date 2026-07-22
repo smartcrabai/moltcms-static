@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           expected="${GITHUB_REF_NAME#static-v}"
-          for package in static-core static-json static-hono static-esbuild static-rollup static-vite static-cache-s3 static-deploy-s3 static; do
+          for package in create-moltcms-static static-core static-json static-hono static-esbuild static-rollup static-vite static-cache-s3 static-deploy-s3 static; do
             actual=$(jq --raw-output .version "packages/${package}/package.json")
             if [ "${actual}" != "${expected}" ]; then
               echo "packages/${package} version ${actual} does not match ${expected}" >&2
@@ -57,7 +57,7 @@ jobs:
         shell: bash
         run: |
           mkdir artifacts
-          for package in static-core static-json static-hono static-esbuild static-rollup static-vite static-cache-s3 static-deploy-s3 static; do
+          for package in create-moltcms-static static-core static-json static-hono static-esbuild static-rollup static-vite static-cache-s3 static-deploy-s3 static; do
             (cd "packages/${package}" && bun pm pack --destination "${GITHUB_WORKSPACE}/artifacts" --quiet)
           done
 
@@ -70,12 +70,13 @@ jobs:
             tar --list --gzip --file "${package}" | grep --quiet '^package/README.md$'
             tar --list --gzip --file "${package}" | grep --quiet '^package/LICENSE$'
           done
+          tar --list --gzip --file artifacts/create-moltcms-static-*.tgz | grep --quiet '^package/dist/cli.js$'
 
       - name: Publish dependency packages
         shell: bash
         run: |
           version="${GITHUB_REF_NAME#static-v}"
-          for package in moltcms-static-core moltcms-static-json moltcms-static-hono moltcms-static-esbuild moltcms-static-rollup moltcms-static-vite moltcms-static-cache-s3 moltcms-static-deploy-s3 moltcms-static; do
+          for package in create-moltcms-static moltcms-static-core moltcms-static-json moltcms-static-hono moltcms-static-esbuild moltcms-static-rollup moltcms-static-vite moltcms-static-cache-s3 moltcms-static-deploy-s3 moltcms-static; do
             tarball="./artifacts/${package}-${version}.tgz"
             spec=$(tar --extract --to-stdout --gzip --file "${tarball}" package/package.json | jq --raw-output '.name + "@" + .version')
             name="${spec%@*}"

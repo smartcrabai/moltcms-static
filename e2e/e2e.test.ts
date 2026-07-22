@@ -21,6 +21,7 @@ const moltcmsDir = resolve(repoRoot, process.env.MOLTCMS_DIR ?? "../moltcms");
 const harnessWrapper = join(moltcmsDir, "e2e", "static-sync-harness.sh");
 
 const publishOrder = [
+	"create-moltcms-static",
 	"static-core",
 	"static-json",
 	"static-hono",

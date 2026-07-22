@@ -3,6 +3,7 @@
 	"private": true,
 	"type": "module",
 	"workspaces": [
+		"packages/create-moltcms-static",
 		"packages/static-core",
 		"packages/static-json",
 		"packages/static-hono",
@@ -15,7 +16,7 @@
 		"examples/*"
 	],
 	"scripts": {
-		"build": "bun x tsc -p packages/static-core/tsconfig.build.json && bun x tsc -p packages/static-json/tsconfig.build.json && bun x tsc -p packages/static-hono/tsconfig.build.json && bun x tsc -p packages/static-esbuild/tsconfig.build.json && bun x tsc -p packages/static-rollup/tsconfig.build.json && bun x tsc -p packages/static-vite/tsconfig.build.json && bun x tsc -p packages/static-cache-s3/tsconfig.build.json && bun x tsc -p packages/static-deploy-s3/tsconfig.build.json && bun x tsc -p packages/static/tsconfig.build.json",
+		"build": "bun x tsc -p packages/create-moltcms-static/tsconfig.build.json && bun x tsc -p packages/static-core/tsconfig.build.json && bun x tsc -p packages/static-json/tsconfig.build.json && bun x tsc -p packages/static-hono/tsconfig.build.json && bun x tsc -p packages/static-esbuild/tsconfig.build.json && bun x tsc -p packages/static-rollup/tsconfig.build.json && bun x tsc -p packages/static-vite/tsconfig.build.json && bun x tsc -p packages/static-cache-s3/tsconfig.build.json && bun x tsc -p packages/static-deploy-s3/tsconfig.build.json && bun x tsc -p packages/static/tsconfig.build.json",
 		"check": "bun run build && tsc -p tsconfig.json --noEmit",
 		"test": "bun run build && bun test packages examples",
 		"test:e2e": "bun test e2e",

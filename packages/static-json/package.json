@@ -1,6 +1,6 @@
 {
 	"name": "@moltcms/static-json",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Git-friendly JSON projection and transactional sync adapter for moltcms static sites.",
 	"license": "Apache-2.0",
 	"type": "module",

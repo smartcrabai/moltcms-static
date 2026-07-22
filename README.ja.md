@@ -26,6 +26,30 @@ bun run build
 bun run test
 ```
 
+## 新規アプリ作成
+
+最小のブログ用スターターは次のコマンドで作成できます。作成先は存在しないディレクトリでなければなりません。
+
+```sh
+bun create moltcms-static my-site
+cd my-site
+bun install
+cp .env.example .env
+# .env に同期URLと読み取り専用APIキーを設定
+bun run sync
+bun run codegen
+bun run build
+```
+
+このコマンドは npm の `create-moltcms-static` を一時実行するため、`@moltcms/static` の事前・グローバルインストールは不要です。`bunx create-moltcms-static my-site` も同じです。既存の導入済みCLIでは、次のコマンドも使用できます。
+
+```sh
+moltcms-static create-app my-site
+# 短縮形: moltcms-static create my-site
+```
+
+スターターは `post` コンテンツタイプ（`title`、`slug`、任意の `body` フィールド）を使います。
+
 ## Config
 
 `moltcms.config.ts` uses `defineConfig`, `moltcmsSource`, `itemRoute`, `queryRoute`, `feedRoute`, and `sitemapRoute`. Page modules lazily load per route. The generated module pins exact schema versions and fingerprint; a mismatch fails closed.

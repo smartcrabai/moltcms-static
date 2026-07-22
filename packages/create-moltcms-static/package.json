@@ -1,7 +1,7 @@
 {
-	"name": "@moltcms/static-esbuild",
+	"name": "create-moltcms-static",
 	"version": "0.1.1",
-	"description": "esbuild browser asset and server-module graph adapter for moltcms static sites.",
+	"description": "Create a MoltCMS static site.",
 	"license": "Apache-2.0",
 	"type": "module",
 	"main": "./dist/index.js",
@@ -15,8 +15,13 @@
 			"import": "./dist/index.js"
 		}
 	},
+	"bin": {
+		"create-moltcms-static": "./dist/cli.js"
+	},
 	"scripts": {
 		"build": "tsc -p tsconfig.build.json",
+		"check": "tsc -p ../../tsconfig.json --noEmit",
+		"test": "bun run build && bun test src",
 		"prepublishOnly": "bun run build"
 	},
 	"publishConfig": {
@@ -29,15 +34,10 @@
 	},
 	"keywords": [
 		"moltcms",
-		"esbuild",
-		"assets",
+		"create",
 		"static-site-generator"
 	],
 	"engines": {
-		"node": ">=22"
-	},
-	"dependencies": {
-		"@moltcms/static-core": "^0.1.0",
-		"esbuild": "^0.27.3"
+		"bun": ">=1.3.0"
 	}
 }

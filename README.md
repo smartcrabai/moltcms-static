@@ -25,6 +25,30 @@ bun add @moltcms/static-cache-s3 @moltcms/static-deploy-s3
 
 ## はじめ方
 
+まだ `@moltcms/static` を導入していない場合は、Honoと同様にワンライナーでアプリを作成できます。
+
+```sh
+bun create moltcms-static my-site
+cd my-site
+bun install
+cp .env.example .env
+# Set the sync URL and a read-only API key in .env.
+bun run sync
+bun run codegen
+bun run build
+```
+
+これは npm の `create-moltcms-static` を一時実行するため、グローバルインストールは不要です。`bunx create-moltcms-static my-site` も同じです。スターターは `post` コンテンツタイプ（`title`、`slug`、任意の `body` フィールド）を使います。
+
+すでに `@moltcms/static` を導入済みのアプリでは、次でも作成できます。
+
+```sh
+moltcms-static create-app my-site
+# 短縮形: moltcms-static create my-site
+```
+
+既存アプリの同期・ビルドには次のCLIを使います。
+
 ```sh
 bunx moltcms-static sync --site main
 bunx moltcms-static codegen --site main --output src/moltcms.generated.ts
@@ -48,7 +72,7 @@ bun run test
 
 ## npm公開
 
-公開対象は `@moltcms/static` と各 `static-*` adapterです。`@moltcms/client` はcanonical client packageで、server-sideの認証済みSSE APIとschema取得APIを提供します。
+公開対象は `create-moltcms-static`、`@moltcms/static`、各 `static-*` adapterです。`@moltcms/client` はcanonical client packageで、server-sideの認証済みSSE APIとschema取得APIを提供します。
 
 `static-v<version>` tagをpushするとGitHub Actionsが依存順にpack・検証・npm provenance付きで公開します。初回だけはnpm ownerのtokenでbootstrap publishを行い、各packageにGitHub Actions Trusted Publisherを登録してください。登録後のreleaseはOIDCを使用するため長期NPM tokenを保存しません。
 

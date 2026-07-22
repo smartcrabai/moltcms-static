@@ -1,6 +1,6 @@
 {
 	"name": "@moltcms/static",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Incremental static site framework for moltcms.",
 	"license": "Apache-2.0",
 	"type": "module",
@@ -44,6 +44,7 @@
 	"dependencies": {
 		"@moltcms/client": "^0.4.0",
 		"@moltcms/static-core": "^0.1.0",
-		"@moltcms/static-json": "^0.1.0"
+		"@moltcms/static-json": "^0.1.0",
+		"create-moltcms-static": "^0.1.1"
 	}
 }

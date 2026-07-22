@@ -3,6 +3,7 @@
 import { exists, rm } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { createApp } from "create-moltcms-static";
 import {
 	buildSite,
 	codegenSite,
@@ -13,6 +14,7 @@ import {
 
 interface Arguments {
 	command: string;
+	directory?: string;
 	config: string;
 	site?: string;
 	output?: string;
@@ -26,6 +28,12 @@ async function main(): Promise<void> {
 	const args = parse(process.argv.slice(2));
 	if (args.command === "init") {
 		await initialize(args.config);
+		return;
+	}
+	if (args.command === "create-app" || args.command === "create") {
+		if (args.directory === undefined)
+			throw new Error("Usage: moltcms-static create-app <directory>");
+		await createApp(args.directory);
 		return;
 	}
 	const config = await loadConfig(args.config);
@@ -186,6 +194,9 @@ function parse(values: readonly string[]): Arguments {
 	};
 	for (let index = 1; index < values.length; index += 1) {
 		const value = values[index];
+		if (value === undefined) continue;
+		if (!value.startsWith("-") && options.directory === undefined)
+			options.directory = value;
 		if (value === "--config")
 			options.config = values[++index] ?? options.config;
 		else if (value === "--site") options.site = values[++index];

@@ -65,12 +65,12 @@ jobs:
         shell: bash
         run: |
           for package in artifacts/*.tgz; do
-            tar --list --gzip --file "${package}" | grep --quiet '^package/dist/index.js$'
-            tar --list --gzip --file "${package}" | grep --quiet '^package/dist/index.d.ts$'
-            tar --list --gzip --file "${package}" | grep --quiet '^package/README.md$'
-            tar --list --gzip --file "${package}" | grep --quiet '^package/LICENSE$'
+            tar --list --gzip --file "${package}" | grep '^package/dist/index.js$' > /dev/null
+            tar --list --gzip --file "${package}" | grep '^package/dist/index.d.ts$' > /dev/null
+            tar --list --gzip --file "${package}" | grep '^package/README.md$' > /dev/null
+            tar --list --gzip --file "${package}" | grep '^package/LICENSE$' > /dev/null
           done
-          tar --list --gzip --file artifacts/create-moltcms-static-*.tgz | grep --quiet '^package/dist/cli.js$'
+          tar --list --gzip --file artifacts/create-moltcms-static-*.tgz | grep '^package/dist/cli.js$' > /dev/null
 
       - name: Publish dependency packages
         shell: bash

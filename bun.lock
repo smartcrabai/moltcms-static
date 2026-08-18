@@ -8,7 +8,7 @@
         "@biomejs/biome": "2.5.3",
         "@types/bun": "latest",
         "oxlint": "1.74.0",
-        "typescript": "^5.9.3",
+        "typescript": "5.9.3",
       },
     },
     "examples/blog": {
@@ -23,14 +23,14 @@
     },
     "packages/create-moltcms-static": {
       "name": "create-moltcms-static",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "bin": {
         "create-moltcms-static": "./dist/cli.js",
       },
     },
     "packages/static": {
       "name": "@moltcms/static",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "bin": {
         "moltcms-static": "./dist/cli.js",
       },
@@ -43,7 +43,7 @@
     },
     "packages/static-cache-s3": {
       "name": "@moltcms/static-cache-s3",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@aws-sdk/client-s3": "^3.995.0",
         "@moltcms/static-core": "^0.1.0",
@@ -51,14 +51,14 @@
     },
     "packages/static-core": {
       "name": "@moltcms/static-core",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@moltcms/client": "^0.4.0",
       },
     },
     "packages/static-deploy-s3": {
       "name": "@moltcms/static-deploy-s3",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@aws-sdk/client-s3": "^3.995.0",
         "@moltcms/static-core": "^0.1.0",
@@ -66,7 +66,7 @@
     },
     "packages/static-esbuild": {
       "name": "@moltcms/static-esbuild",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@moltcms/static-core": "^0.1.0",
         "esbuild": "^0.27.3",
@@ -74,7 +74,7 @@
     },
     "packages/static-hono": {
       "name": "@moltcms/static-hono",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@moltcms/static-core": "^0.1.0",
         "hono": "^4.11.7",
@@ -82,7 +82,7 @@
     },
     "packages/static-json": {
       "name": "@moltcms/static-json",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@moltcms/client": "^0.4.0",
         "@moltcms/static-core": "^0.1.0",
@@ -90,7 +90,7 @@
     },
     "packages/static-rollup": {
       "name": "@moltcms/static-rollup",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@moltcms/static-core": "^0.1.0",
       },
@@ -100,7 +100,7 @@
     },
     "packages/static-vite": {
       "name": "@moltcms/static-vite",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "dependencies": {
         "@moltcms/static-rollup": "^0.1.0",
         "vite": "^8.0.10",

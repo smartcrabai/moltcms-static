@@ -32,7 +32,7 @@
 		"@biomejs/biome": "2.5.3",
 		"@types/bun": "latest",
 		"oxlint": "1.74.0",
-		"typescript": "5.9.3"
+		"typescript": "7.0.2"
 	},
 	"engines": {
 		"node": ">=22"

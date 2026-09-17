@@ -31,7 +31,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.5.13",
 		"@types/bun": "latest",
-		"oxlint": "1.82.0",
+		"oxlint": "1.83.0",
 		"typescript": "5.9.3"
 	},
 	"engines": {

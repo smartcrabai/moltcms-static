@@ -3,7 +3,6 @@
 [English README](README.md)
 
 `@moltcms/static` は `@moltcms/client` の認証付きSSE同期を、Git管理可能なJSON projectionと再現可能な増分静的buildへ接続する **Bun 1.3+** 向けフレームワークです。CLIとfacadeはBun APIを使用するため、Node.jsだけでは実行できません。
-
 - `.moltcms/<site>/<kind>` はレビュー・コミット可能な正本です。コンテンツはentityごとに1 JSONファイル、削除はtombstoneとして記録します。
 - `.cache/moltcms-static` はroute stateとartifactの再生成可能なcacheです。Git管理しません。
 - buildは `complete` 状態のprojectionだけを読み込み、依存関係とquery fingerprintを比較し、隔離したgenerationを検証してからpromoteします。

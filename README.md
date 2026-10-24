@@ -3,7 +3,6 @@
 [Japanese README](README.ja.md)
 
 `@moltcms/static` is a **Bun 1.3+** framework that connects the authenticated SSE sync of `@moltcms/client` to Git-manageable JSON projections and reproducible incremental static builds. The CLI and facade use Bun APIs, so they cannot run on Node.js alone.
-
 - `.moltcms/<site>/<kind>` is the reviewable, committable source of truth. Content is stored as one JSON file per entity; deletions are recorded as tombstones.
 - `.cache/moltcms-static` is a regenerable cache of route state and artifacts. It is not committed to Git.
 - Builds read only `complete` projections, compare dependency and query fingerprints, verify the isolated generation, then promote it.

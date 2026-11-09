@@ -29,9 +29,9 @@
 		"prepare:publish": "bun scripts/prepare-publish.ts"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.6.5",
+		"@biomejs/biome": "2.6.6",
 		"@types/bun": "latest",
-		"oxlint": "1.91.0",
+		"oxlint": "1.92.0",
 		"typescript": "5.9.3"
 	},
 	"engines": {
